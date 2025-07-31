@@ -25,5 +25,5 @@ result = simulator.run(compiled_circuit, shots=1000).result()       # run the ci
 # Show results
 counts = result.get_counts()
 print("Results:", counts)
-plot_histogram(counts, title="Result of Single Coin Flip")
+plot_histogram(counts, title="Coin Flip Distribution")
 plt.show()
