@@ -1,4 +1,3 @@
-from qiskit import *
 from qiskit import QuantumCircuit
 from qiskit_aer import AerSimulator
 from qiskit import transpile
@@ -18,15 +17,15 @@ qc.measure(0, 0)
 qc.measure(1, 1)
 qc.measure(2, 2)
 
-qc.draw('mpl')
+qc.draw('mpl', initial_state=True)
 plt.show()
 
 # Simulate the circuit
 simulator = AerSimulator()      # select the simulator
 
-compiled_circuit = transpile(qc, simulator)     # transpile the quantum circuit in elementary gates
+transpile_circuit = transpile(qc, simulator)     # transpile the quantum circuit in elementary gates
 
-result = simulator.run(compiled_circuit, shots=1000).result()       # run the circuit
+result = simulator.run(transpile_circuit, shots=1000).result()       # run the circuit
 
 # Show results
 counts = result.get_counts()
