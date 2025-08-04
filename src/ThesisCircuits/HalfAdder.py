@@ -35,5 +35,3 @@ result = simulator.run(transpile_circuit, shots=1000).result()
 
 counts = result.get_counts()
 print("Results:", counts)
-plot_histogram(counts, title="Half Adder Output Distribution")
-plt.show()
