@@ -4,25 +4,27 @@ from qiskit import transpile
 from qiskit.visualization import plot_histogram
 from matplotlib import pyplot as plt
 
-qc = QuantumCircuit(3, 2)
-# q0 = A
-# q1 = B
+qc = QuantumCircuit(4, 2)
+# q0 = Input A
+# q1 = Input B
+# q2 = Output Sum
+# q3 = Output Carry
 
 qc.x(0)     # comment line to set q0 = |0> 
 qc.x(1)     # comment line to set q1 = |0>
 
 qc.barrier()
 
-qc.ccx(0,1,2)
+qc.cx(0,2)
 
 qc.barrier()
 
-qc.cx(0,1)
+qc.ccx(0,1,3)
 
 qc.barrier()
 
-qc.measure(1, 0)
-qc.measure(2, 1)
+qc.measure(2, 0)    # Sum
+qc.measure(3, 1)    # Carry
 
 qc.draw('mpl', initial_state=True)
 plt.show()
@@ -33,5 +35,5 @@ result = simulator.run(transpile_circuit, shots=1000).result()
 
 counts = result.get_counts()
 print("Results:", counts)
-plot_histogram(counts, title="Distribution")
+plot_histogram(counts, title="Half Adder Output Distribution")
 plt.show()
