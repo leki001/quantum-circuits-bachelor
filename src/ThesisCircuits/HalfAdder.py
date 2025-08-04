@@ -5,6 +5,9 @@ from qiskit.visualization import plot_histogram
 from matplotlib import pyplot as plt
 
 qc = QuantumCircuit(3, 2)
+# q0 = A
+# q1 = B
+# q2 = C_in
 
 qc.x(0)     # comment line to set q0 = |0> 
 qc.x(1)     # comment line to set q1 = |0>

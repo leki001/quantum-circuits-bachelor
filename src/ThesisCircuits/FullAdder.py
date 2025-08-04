@@ -7,7 +7,7 @@ from matplotlib import pyplot as plt
 qc = QuantumCircuit(8, 2)
 # q0 = A
 # q1 = B
-# q2 = C
+# q2 = C_in
 # q3 = AND1(A,B)
 # q4 = XOR1(A,B)
 # q5 = XOR2(C,q4) = XOR2(C,XOR1) = SUM
