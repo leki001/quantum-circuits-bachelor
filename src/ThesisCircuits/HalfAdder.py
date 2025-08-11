@@ -15,11 +15,14 @@ qc.x(1)     # comment line to set q1 = |0>
 
 qc.barrier()
 
-qc.cx(0,2)
+# Sum= A ⊕ B
+qc.cx(0,2)      # A → Sum
+qc.cx(1, 2)     # B → Sum
 
 qc.barrier()
 
-qc.ccx(0,1,3)
+# Carry = A ∧ B
+qc.ccx(0,1,3)   # Toffoli: (A,B) -> Carry
 
 qc.barrier()
 
@@ -34,4 +37,4 @@ transpile_circuit = transpile(qc, simulator)
 result = simulator.run(transpile_circuit, shots=1000).result()
 
 counts = result.get_counts()
-print("Results:", counts)
+print("Results:", counts)       # LittleEndian -> c1, c0
