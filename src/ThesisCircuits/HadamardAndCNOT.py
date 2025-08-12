@@ -1,7 +1,7 @@
 from qiskit import QuantumCircuit
 from qiskit_aer import AerSimulator
 from qiskit import transpile
-from qiskit.visualization import plot_histogram
+from qiskit.visualization import plot_distribution
 from matplotlib import pyplot as plt
 
 qc = QuantumCircuit(2, 2)
@@ -20,6 +20,10 @@ transpile_circuit = transpile(qc, simulator)
 result = simulator.run(transpile_circuit, shots=1000).result()
 
 counts = result.get_counts()
-print("Results:", counts)
-plot_histogram(counts, title="Distribution")
+probabilities  = {state: (count / sum(counts.values())) * 100 for state, count in counts.items()}
+
+print("Results:     ", counts)
+print("Results in %:", probabilities)
+
+plot_distribution(counts, title="Distribution")
 plt.show()

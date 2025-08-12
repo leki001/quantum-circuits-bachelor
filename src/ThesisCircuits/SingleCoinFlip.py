@@ -1,7 +1,7 @@
 from qiskit import QuantumCircuit
 from qiskit_aer import AerSimulator
 from qiskit import transpile
-from qiskit.visualization import plot_histogram
+from qiskit.visualization import plot_distribution
 from matplotlib import pyplot as plt
 
 # Create the circuit
@@ -19,6 +19,10 @@ result = simulator.run(transpile_circuit, shots=1000).result()       # run the c
 
 # Show results
 counts = result.get_counts()
-print("Results:", counts)
-plot_histogram(counts, title="Coin Flip Distribution")
+probabilities = {state: (count / sum(counts.values())) * 100 for state, count in counts.items()}
+
+print("Results:     ", counts)
+print("Results in %:", probabilities)
+
+plot_distribution(counts, title="Coin Flip Distribution")
 plt.show()
